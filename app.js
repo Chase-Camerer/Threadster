@@ -11,30 +11,32 @@ const app = new App({
   port: process.env.PORT || 3000
 });
 
-// Listens to incoming messages that contain "hello"
-app.message('hello', async ({ message, say }) => {
-
+// Listens to incoming messages
+app.message(async ({ message, say }) => {
+  if (message.text.length < 20) {
   // say() sends a message to the channel where the event was triggered
-  await say({
-    blocks: [
-      {
-        "type": "section",
-        "text": {
-          "type": "mrkdwn",
-          "text": `Hey there <@${message.user}>!`
-        },
-        "accessory": {
-          "type": "button",
+  // JSON.stringify(message) gives information on what message.any gives
+    await say({
+      blocks: [
+        {
+          "type": "section",
           "text": {
-            "type": "plain_text",
-            "text": "Click Me"
+            "type": "mrkdwn",
+            "text": `Should this message be in thread of the previous message?`
           },
-          "action_id": "button_click"
+          "accessory": {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "8"
+            },
+            "action_id": "button_click"
+          }
         }
-      }
-    ],
-    text: `Hey there <@${message.user}>!`
-  });
+      ],
+      text: `Should this message be in thread of the previous message?`
+    });
+  }
 });
 
 app.action('button_click', async ({body, ack, say}) => {
@@ -46,6 +48,6 @@ app.action('button_click', async ({body, ack, say}) => {
 (async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
-
+  
   console.log('⚡️ Bolt app is running!');
 })();
