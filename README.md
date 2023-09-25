@@ -21,11 +21,11 @@ npm install @slack/bolt
 > - throw new errors_1.AppInitializationError('You must provide an appToken when socketMode is set to true.
 To generate an appToken see: https://api.slack.com/apis/connections/socket#token'); 
 
-If you get this error do step 2-3.
+If you get this error do step 2-iii.
 If you have trouble finding the appToken it can be found in the apps Settings -> Basic Information -> App-Level Tokens -> any Token Name
 
-> - throw new errors_1.AppInitializationError(`${tokenUsage} \n\nSince you have not provided a token or authorize, you might be missing one or more required oauth installer options.
-See https://slack.dev/bolt-js/concepts#authenticating-oauth for these required fields.\n`);
+> - throw new errors_1.AppInitializationError(\`${tokenUsage} \n\nSince you have not provided a token or authorize, you might be missing one or more required oauth installer options.
+See https://slack.dev/bolt-js/concepts#authenticating-oauth for these required fields.\n\`);
 
-If you get this error do step 2-2.
+If you get this error do step 2-ii.
 if you cant find the the apps xoxb you can find in Featurs -> Oauth & Permissions -> OAuth Tokens for Your Workspace
