@@ -11,9 +11,9 @@ npm install @slack/bolt
 ### Every Time
 
 2. set up eviromental variables
- 1. `export SLACK_SIGNING_SECRET=`(signing secret)
- 2. `export SLACK_BOT_TOKEN=`(apps xoxb)
- 3. `export SLACK_APP_TOKEN=`(Bots app token)
+  1. `export SLACK_SIGNING_SECRET=`(signing secret)
+  2. `export SLACK_BOT_TOKEN=`(apps xoxb)
+  3. `export SLACK_APP_TOKEN=`(Bots app token)
 3. run in terminal "node app.js"
 
 ## **Errors**
