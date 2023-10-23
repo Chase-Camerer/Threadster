@@ -39,4 +39,10 @@ if you cant find the the apps xoxb you can find in Featurs -> Oauth & Permission
    6. Click on the + icon in the terminal window
    Link for more help: https://stackoverflow.com/questions/42606837/how-do-i-use-bash-on-windows-from-the-visual-studio-code-integrated-terminal
 
-   
+## **Testing**
+
+Run test by running `npm test`.
+
+If you get this error first run `npm install`.
+
+> 'jest' is not recognized as an internal or external command, operable program or batch file.
