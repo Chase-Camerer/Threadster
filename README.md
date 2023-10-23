@@ -29,3 +29,14 @@ See https://slack.dev/bolt-js/concepts#authenticating-oauth for these required f
 
 If you get this error do step 2-ii.
 if you cant find the the apps xoxb you can find in Featurs -> Oauth & Permissions -> OAuth Tokens for Your Workspace
+
+> - No Bash Terminal
+   1. Intall Git
+   2. open VS Code and press Ctrl + `
+   3. open the command palette using ctrl + shift + p
+   4. Type - Select Default Profile
+   5. Select Git Bash from the options
+   6. Click on the + icon in the terminal window
+   Link for more help: https://stackoverflow.com/questions/42606837/how-do-i-use-bash-on-windows-from-the-visual-studio-code-integrated-terminal
+
+   
