@@ -1,4 +1,4 @@
-const { App } = require('@slack/bolt');
+import  { App } from  '@slack/bolt';
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
@@ -8,12 +8,18 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   // Socket Mode doesn't listen on a port, but in case you want your app to respond to OAuth,
   // you still need to listen on some port!
-  port: process.env.PORT || 3000
+  port: +(process.env.PORT || 3000)
 });
 
 // Listens to incoming messages
 app.message(async ({ message, say }) => {
-  if (message.text.length < 20) {
+
+  if (message.subtype === undefined && message.text) {
+    const reversedText = message.text;
+    // await say(reversedText);
+  }
+  const length:number = message.type === "message" && message.ts;
+  if (length < 20) {
   // say() sends a message to the channel where the event was triggered
   // JSON.stringify(message) gives information on what message.any gives
     await say({
