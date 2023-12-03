@@ -3,12 +3,13 @@ A bot that help put responses into a thread
 
 ## Install Guide
 
-### First Time
-1. Copy and paste this to download
+### Setup Development Environment
+Install Slack Bolt by executing
 ```
 npm install @slack/bolt
 ```
-### Every Time
+### Manual Testing
+https://api.slack.com/start/distributing#single_workspace_apps
 
 2. set up eviromental variables
    1. `export SLACK_SIGNING_SECRET=(signing secret)`
@@ -39,7 +40,11 @@ if you cant find the the apps xoxb you can find in Featurs -> Oauth & Permission
    6. Click on the + icon in the terminal window
    Link for more help: https://stackoverflow.com/questions/42606837/how-do-i-use-bash-on-windows-from-the-visual-studio-code-integrated-terminal
 
-## **Testing**
+> - 'jest' is not recognized as an internal or external command, operable program or batch file.
+   ```
+   npm install --save-dev jest
+   ```
+## **Automated Testing**
 
 Run test by running `npm test`.
 
