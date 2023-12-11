@@ -8,14 +8,23 @@ Install Slack Bolt by executing
 ```
 npm install @slack/bolt
 ```
-### Manual Testing
+
+## **Automated Testing**
+
+Run test by running `npm test`.
+
+If you get this error first run `npm install`.
+
+> 'jest' is not recognized as an internal or external command, operable program or batch file.
+
+## Manual Testing
 https://api.slack.com/start/distributing#single_workspace_apps
 
-2. set up eviromental variables
+1. set up eviromental variables
    1. `export SLACK_SIGNING_SECRET=(signing secret)`
    2. `export SLACK_BOT_TOKEN=(apps xoxb)`
    3. `export SLACK_APP_TOKEN=(Bots app token)`
-3. run in terminal "node app.js"
+2. run in terminal "node app.js"
 
 ## **Errors**
 
@@ -44,10 +53,3 @@ if you cant find the the apps xoxb you can find in Featurs -> Oauth & Permission
    ```
    npm install --save-dev jest
    ```
-## **Automated Testing**
-
-Run test by running `npm test`.
-
-If you get this error first run `npm install`.
-
-> 'jest' is not recognized as an internal or external command, operable program or batch file.
