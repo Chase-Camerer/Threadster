@@ -13,15 +13,9 @@ const app = new App({
 
 // Listens to incoming messages
 app.message(async ({ message, say }) => {
-
-  if (message.subtype === undefined && message.text) {
-    const reversedText = message.text;
-    // await say(reversedText);
-  }
-  const length:number = message.type === "message" && message.ts;
-  if (length < 20) {
-  // say() sends a message to the channel where the event was triggered
-  // JSON.stringify(message) gives information on what message.any gives
+const message2=message as any;
+  if (message2.text.length < 20) {
+      // say() sends a message to the channel where the event was triggered
     await say({
       blocks: [
         {
