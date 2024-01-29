@@ -17,6 +17,10 @@ If you get this error first run `npm install`.
 
 > 'jest' is not recognized as an internal or external command, operable program or batch file.
 
+To Transcompile app.ts to app.js use this command 'tsc --esModuleInterop app.ts'
+
+'await say(JSON.stringify(message));' can be used to see the entire output of a slack message
+
 ## Manual Testing
 https://api.slack.com/start/distributing#single_workspace_apps
 
