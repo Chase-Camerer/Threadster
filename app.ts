@@ -11,31 +11,38 @@ const app = new App({
   port: +(process.env.PORT || 3000)
 });
 
-// Listens to incoming messages
+function hasOwnProperty<X extends {}, Y extends PropertyKey>
+  (message: X, text: Y): message is X & Record<Y, unknown> {
+  return message.hasOwnProperty(text)
+}
+
 app.message(async ({ message, say }) => {
-const message2=message as any;
-  if (message2.text.length < 20) {
-      // say() sends a message to the channel where the event was triggered
-    await say({
-      blocks: [
-        {
-          "type": "section",
-          "text": {
-            "type": "mrkdwn",
-            "text": `Should this message be in thread of the previous message?`
-          },
-          "accessory": {
-            "type": "button",
+  // https://github.com/slackapi/bolt-js/issues/904
+  // https://fettblog.eu/typescript-hasownproperty/ 
+  if (typeof message === 'object' && hasOwnProperty(message, 'text') && typeof message.text === 'string') {
+    if (message.text.length < 20) {
+        // say() sends a message to the channel where the event was triggered
+      await say({
+        blocks: [
+          {
+            "type": "section",
             "text": {
-              "type": "plain_text",
-              "text": "8"
+              "type": "mrkdwn",
+              "text": `Should this message be in thread of the previous message?`
             },
-            "action_id": "button_click"
+            "accessory": {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "text": "8"
+              },
+              "action_id": "button_click"
+            }
           }
-        }
-      ],
-      text: `Should this message be in thread of the previous message?`
-    });
+        ],
+        text: `Should this message be in thread of the previous message?`
+      });
+    }
   }
 });
 
