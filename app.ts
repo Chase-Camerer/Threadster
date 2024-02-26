@@ -1,4 +1,5 @@
 import  { App } from  '@slack/bolt';
+import { isSmall } from "./size"
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
@@ -20,7 +21,7 @@ app.message(async ({ message, say }) => {
   // https://github.com/slackapi/bolt-js/issues/904
   // https://fettblog.eu/typescript-hasownproperty/ 
   if (typeof message === 'object' && hasOwnProperty(message, 'text') && typeof message.text === 'string') {
-    if (message.text.length < 20) {
+    if (isSmall(message.text)) {
         // say() sends a message to the channel where the event was triggered
       await say({
         blocks: [
