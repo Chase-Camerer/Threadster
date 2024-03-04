@@ -1,6 +1,7 @@
 import { isSmall } from "./size"
 
 test.each([
+    '1234',
     'asd',
     'asdfghjkl'
 ])('Should be small: %s', (text) => {
