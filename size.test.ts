@@ -1,5 +1,5 @@
 import { isSmall } from "./size"
 
-test('See if value would work',() => {
-    expect(isSmall('asd')).toBe(true);
+test.each(['asd'])('See if value would work', (text) => {
+  expect(isSmall(text)).toBe(true);
 });
