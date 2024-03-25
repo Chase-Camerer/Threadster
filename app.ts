@@ -1,5 +1,6 @@
 import  { App } from  '@slack/bolt';
 import { isSmall } from "./size"
+import { isQuick } from "./time"
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
@@ -17,33 +18,46 @@ function hasOwnProperty<X extends {}, Y extends PropertyKey>
   return message.hasOwnProperty(text)
 }
 
-app.message(async ({ message, say }) => {
+async function respond(say) {
+  await say({
+    blocks: [
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": `Should this message be in thread of the previous message?`
+        },
+        "accessory": {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "8"
+          },
+          "action_id": "button_click"
+        }
+      }
+    ],
+    text: `Should this message be in thread of the previous message?`
+  });
+}
+
+const timesOfLastMessageByChannelId = new Map<string, string>();
+
+app.message(async ({message, say}) => {
   // https://github.com/slackapi/bolt-js/issues/904
   // https://fettblog.eu/typescript-hasownproperty/ 
-  if (typeof message === 'object' && hasOwnProperty(message, 'text') && typeof message.text === 'string') {
-    if (isSmall(message.text)) {
+  // JSON.stringify(message)
+  if (typeof message === 'object' 
+  && hasOwnProperty(message, 'text') && typeof message.text === 'string'
+  && hasOwnProperty(message, 'channel') && typeof message.channel === 'string'
+  && hasOwnProperty(message, 'ts') && typeof message.ts === 'string') {
+    const isMessageQuick = timesOfLastMessageByChannelId.has(message.channel) && isQuick(timesOfLastMessageByChannelId.get(message.channel), message.ts)
+    const isMessageSmall = isSmall(message.text);
+    if (isMessageQuick || isMessageSmall) {
         // say() sends a message to the channel where the event was triggered
-      await say({
-        blocks: [
-          {
-            "type": "section",
-            "text": {
-              "type": "mrkdwn",
-              "text": `Should this message be in thread of the previous message?`
-            },
-            "accessory": {
-              "type": "button",
-              "text": {
-                "type": "plain_text",
-                "text": "8"
-              },
-              "action_id": "button_click"
-            }
-          }
-        ],
-        text: `Should this message be in thread of the previous message?`
-      });
+      await respond(say);
     }
+    timesOfLastMessageByChannelId.set(message.channel, message.ts);
   }
 });
 
